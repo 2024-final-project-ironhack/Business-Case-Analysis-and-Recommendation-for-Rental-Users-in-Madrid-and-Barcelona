@@ -47,4 +47,3 @@ Conduct exploratory data analysis specifically for the Madrid dataset.
 Compare the findings from the EDA of Barcelona and Madrid to identify similarities, differences, and potential recommendations for rental users and policy suggestions.
 
 
-
