@@ -2,7 +2,7 @@
 
 ### Background and Purpose of the Investigation
 
-Barcelona and Madrid are one of the major European tourist hubs, attracting millions of visitors annually. Barcelona alone recorded over 6 million visitors in the most recent year, marking a 5.7% increase from 2023, with an average of 229,531 visitors per day. This compares to 178,289 daily visitors the previous year, as per official data from the Barcelona City Council. Madrid, although receiving fewer tourists, still welcomed an impactful 4.4 million visitors so far this year, according to the Madrid City Council.
+Barcelona and Madrid are two of the major European tourist hubs, attracting millions of visitors annually. Barcelona alone recorded over 6 million visitors in the most recent year, marking a 5.7% increase from 2023, with an average of 229,531 visitors per day. This compares to 178,289 daily visitors the previous year, as per official data from the Barcelona City Council. Madrid, although receiving fewer tourists, still welcomed an impactful 4.4 million visitors so far this year, according to the Madrid City Council.
 
 This influx of tourists has led to growing discontent among residents in both cities, particularly in central neighborhoods. Locals perceive the surge in tourism as a burden, contributing to rising housing costs, increased shop prices, and congested streets. Much of this frustration is directed at platforms like Airbnb, which are seen as exacerbating the problem.
 
@@ -19,26 +19,24 @@ The initial dataset extracted from airbnb oficial website contains numerous colu
 - `listing_prepared_mad`
 
 ## 1. Data Cleaning
-Despite the first preparation dataset,a cleaning process in listing_prepared_bcn & listing_prepared_mad must be taken Before analyzing and modeing , it's essential to ensure our dataset is clean and ready. It is necessary to encoded categorical data and normalized features such latitude, longitude, price, amenities (e.g., bedrooms, AC, bathroom, balcony, etc.).
+Despite the first preparation dataset, a cleaning process in listing_prepared_bcn & listing_prepared_mad must be taken before analysing and modeling. It's essential to ensure our dataset is clean and ready. It is necessary to encoded categorical data and normalised features such as latitude, longitude, price, and amenities (e.g., bedrooms, AC, bathroom, balcony, etc.).
 
-The diferents proces to cleaning data are descriptive below:
+The different processes for cleaning data are described below:
 
 ### 1.1 Encoding Categorical Data
 Convert categorical variables such as `...`, `...`, and `...` into numerical values using techniques like one-hot encoding or label encoding.
 
-### 1.2 Normalizing Data
-Standardize features such as price and distance from the city center to have a mean of zero and a standard deviation of one. This is especially important for calculations involving distance and price.
+### 1.2 Normalising Data
+Standardise features such as price and distance from the city centre to have a mean of zero and a standard deviation of one. This is especially important for calculations involving distance and price.
 
 ### 1.3 Calculating Distance
-Calculate the distance of each listing from the city centers using the Haversine formula. This can be done in Python. If needed, a code snippet can be provided to perform this calculation.
-
-
+Calculate the distance of each listing from the city centers using the Haversine formula. This can be done in Python. 
 
 ## 2. Exploratory Data Analysis (EDA)
-Once is the dataset cleaned is crucial explore the data to understand data structure, uncover patterns and trends, and prepare data for modeling. It helps identify relationships, detect anomalies, and guide decisions through visualizations and statistical insights. EDA supports informed, data-driven decision-making.
+Once the dataset has been cleaned, it is crucial to explore the data to understand data structure, uncover patterns and trends, and prepare data for modeling. It helps identify relationships, detect anomalies, and guide decisions through visualisations and statistical insights. EDA supports informed, data-driven decision-making.
 
 ### 2.1 EDA for Barcelona
-Conduct exploratory data analysis specifically for the Barcelona dataset where has been found this outputs.
+Conduct exploratory data analysis specifically for the Barcelona dataset.
 
 Barcelona offers apartments with an average price of 195 EUR/night. It is noticeable that most apartments receive reviews, which can directly influence the price. Additionally, being a super-host can increase the price by 10%. Barcelona has 18,85 , with 14,848 short-term rentals distributed across 10 neighborhoods, each with different average prices depending on their location and status.
 
@@ -73,7 +71,7 @@ Compare the findings from the EDA of Barcelona and Madrid to identify similariti
 
 ### 3.1.Airbnb Price Analysis: Barcelona vs. Madrid
 
-As mentioned at the beginning, the purpose of this project is to analyze and compare Airbnb prices in the cities of Barcelona and Madrid for short-term rentals.
+As mentioned at the beginning, the purpose of this project is to analyse and compare Airbnb prices in the cities of Barcelona and Madrid for short-term rentals.
 
 ##### ANALYSIS
 
@@ -110,7 +108,7 @@ The price is close to the mean and decreases as it gets farther from the hotspot
 
 ![alt text](<Sources/Type of bedrooms.png>)
 
-As the graphic reflects in general both cities offers more entire aparment, followed by private rooms ending with share rooms. Nevertheless Madrid has more offer comparing wiht Barcelona.
+As the graphic reflects, in general there is a greater percentage of whole apartments offered in both cities, followed by private rooms and lastly shared rooms. Nevertheless Madrid has many more listings than Barcelona.
 
 **Category Status:**
 
@@ -154,7 +152,7 @@ These models were chosen to compare the effectiveness of linear versus non-linea
 
 Before building the models, we performed the following preprocessing steps:
 - **Outlier Removal**: Outliers were identified and eliminated using the z-score calculation \(\frac{X-\mu}{\sigma}\).
-- **Normalization**: Numeric columns were normalized using `StandardScaler`.
+- **Normalisation**: Numeric columns were normalised using `StandardScaler`.
 - **Clustering with DBSCAN**: We used DBSCAN for clustering, which was also useful in identifying and handling outliers and clustering data with arbitrary shapes.
 
 ### Features Used for Prediction
@@ -234,12 +232,12 @@ These results provide valuable insights into the factors influencing Airbnb pric
 
 
 ## GENERAL CONCLUSIONS
-- reviews doesn't affect to the price 
-- hotspot is not the reason to higher price
+- reviews don't affect price 
+- proximity to the city centre does not correlate with price
 - the valuable selected - `distance_from_city_center`
 - `host_is_superhost`
 - `elevator`
 - `air_conditioning`
 - `room_type_encoded`
-- `number_of_reviews`
-- `review_scores_rating` has not weight to price prediction. Should be more variables into account such seasonality demand, prestigy, trend etc. We recomend to take another analysis in the future to try to determinate better the prediction of the price.
+- `number_of_reviews` does not correlate with price
+- `review_scores_rating` does not aid in price prediction. More variables should be taken into account such as seasonal demand, prestige, and trends. We recomend undertaking another analysis in the future to better determine the prediction of the price.
