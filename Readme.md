@@ -230,13 +230,30 @@ The selected independent variables (X) are not well-adjusted to predict the depe
 These results provide valuable insights into the factors influencing Airbnb pricing in Barcelona and Madrid, highlighting both similarities and differences between the two markets.
 
 
-## GENERAL CONCLUSIONS
-- reviews don't affect price 
-- proximity to the city centre does not correlate with price
-- the valuable selected - `distance_from_city_center`
-- `host_is_superhost`
-- `elevator`
-- `air_conditioning`
-- `room_type_encoded`
-- `number_of_reviews` does not correlate with price
-- `review_scores_rating` does not aid in price prediction. More variables should be taken into account such as seasonal demand, prestige, and trends. We recomend undertaking another analysis in the future to better determine the prediction of the price.
+# General Conclusions and Advice for Airbnb Users
+
+**General Conclusions:**
+
+1. **Distance to City Center:** While proximity to the city center in both Barcelona and Madrid does impact accommodation prices, it is not as significant a factor as initially expected. The influence of this variable on price prediction is moderate at best.
+
+2. **Key Variables:** The selected variables—distance from the city center, superhost status, presence of an elevator, air conditioning, room type, number of reviews, and review scores—do not have a substantial effect on price prediction. Surprisingly, reviews and proximity to popular tourist hotspots are not key drivers of higher prices.
+
+3. **Bedrooms and Bed Type:** The number of bedrooms and the type of bed are strongly correlated with higher prices. These variables should be considered more carefully in future analyses.
+
+4. **Additional Variables:** The current model’s limitations suggest the need for further analysis with additional variables, such as seasonal demand, neighborhood prestige, and market trends. These factors may better capture the complexities of price determination.
+
+5. **Price Categories:** Madrid offers nearly double the number of "economic" and "low-cost" accommodations compared to Barcelona, making it a more budget-friendly destination with a wider variety of affordable options.
+
+**Advice for Airbnb Users:**
+
+1. **Budget Adjustment:** 
+   - **Madrid:** If your budget is around 150 euros per night, consider increasing it by just 10 euros to significantly expand your range of available apartments.
+   - **Barcelona:**
+     - For "economic" travelers, raising your budget from 180 to 190 euros can provide more options.
+     - For "luxury" travelers, increasing your budget from 230 to 240 euros can give you access to a wider selection of accommodations.
+
+2. **Consider Bed Type and Bedrooms:** Since the number of bedrooms and the type of bed have a strong impact on price, carefully consider these factors when selecting an Airbnb.
+
+3. **Broader Selection in Madrid:** For those prioritizing budget, Madrid offers a greater variety of "economic" and "low-cost" accommodations compared to Barcelona. This makes Madrid a more attractive option for budget-conscious travelers.
+
+By keeping these insights in mind, you can make more informed decisions and find the best accommodations that fit your preferences and budget in both Barcelona and Madrid.
