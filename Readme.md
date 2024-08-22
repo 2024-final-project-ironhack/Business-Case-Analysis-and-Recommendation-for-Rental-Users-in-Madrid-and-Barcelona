@@ -10,114 +10,72 @@ This influx of tourists has led to growing discontent among residents in both ci
 **Purpose of the Analysis:**
 The purpose of this investigation is to provide insights and recommendations for managing rental markets and tourism in Barcelona and Madrid. Specifically, it aims to propose strategies for decentralizing tourism in Barcelona, shifting the focus away from overcrowded hotspots, and to compare the rental dynamics between Barcelona and Madrid to inform better policy decisions, taking into account that tourists stay for an average of 4.6 nights in short-term accommodations.
 
-## Steps
+# Steps
 
-### 0. Data Preparation
+## 0. Data Preparation
 The initial dataset extracted from airbnb oficial website contains numerous columns that are not necessary for our analysis. To streamline and focus the exploratory and comparative analysis between the datasets of Barcelona and Madrid, it is crucial to simplify the datasets by removing irrelevant columns. This process will help concentrate on variables that add real value to the analysis and improve its efficiency. Below are the names of the reduced datasets created for this purpose:
 
 - `listing_prepared_bcn`
 - `listing_prepared_mad`
 
-### 1. Data Cleaning
+## 1. Data Cleaning
 Despite the first preparation dataset,a cleaning process in listing_prepared_bcn & listing_prepared_mad must be taken Before analyzing and modeing , it's essential to ensure our dataset is clean and ready. It is necessary to encoded categorical data and normalized features such latitude, longitude, price, amenities (e.g., bedrooms, AC, bathroom, balcony, etc.).
 
 The diferents proces to cleaning data are descriptive below:
 
-#### 1.1 Encoding Categorical Data
+### 1.1 Encoding Categorical Data
 Convert categorical variables such as `...`, `...`, and `...` into numerical values using techniques like one-hot encoding or label encoding.
 
-#### 1.2 Normalizing Data
+### 1.2 Normalizing Data
 Standardize features such as price and distance from the city center to have a mean of zero and a standard deviation of one. This is especially important for calculations involving distance and price.
 
-#### 1.3 Calculating Distance
+### 1.3 Calculating Distance
 Calculate the distance of each listing from the city centers using the Haversine formula. This can be done in Python. If needed, a code snippet can be provided to perform this calculation.
 
 
 
-### 2. Exploratory Data Analysis (EDA)
+## 2. Exploratory Data Analysis (EDA)
 Once is the dataset cleaned is crucial explore the data to understand data structure, uncover patterns and trends, and prepare data for modeling. It helps identify relationships, detect anomalies, and guide decisions through visualizations and statistical insights. EDA supports informed, data-driven decision-making.
 
-#### 2.1 EDA for Barcelona
+### 2.1 EDA for Barcelona
 Conduct exploratory data analysis specifically for the Barcelona dataset where has been found this outputs.
 
 Barcelona offers apartments with an average price of 195 EUR/night. It is noticeable that most apartments receive reviews, which can directly influence the price. Additionally, being a super-host can increase the price by 10%. Barcelona has 18,85 , with 14,848 short-term rentals distributed across 10 neighborhoods, each with different average prices depending on their location and status.
-----------------------------+-------------------------+
-|neighbourhood_group_cleansed|avg(review_scores_rating)|
-+----------------------------+-------------------------+
-|                    Eixample|       3.5628815848716635|
-|                  Sant Martí|        3.558103151862467|
-|              Sants-Montjuïc|       3.5348134900357664|
-|                      Gràcia|       3.4701405750798706|
-|                Ciutat Vella|        3.379420654911832|
-|              Horta-Guinardó|        3.212784810126581|
-|                   Les Corts|       3.1971712158808923|
-|                 Sant Andreu|        3.186210191082802|
-|                  Nou Barris|       3.0209954751131214|
-|         Sarrià-Sant Gervasi|       2.8081116751269044|
-+----------------------------+-------------------------+
+
+![alt text](<Sources/Barcelona_ ng.png>)
 
 The price also varies based on the type of accommodation, whether it is a full apartment, a private room, or a shared room.
 
-+-----------------+------------------+
-|room_type_encoded|        avg(price)|
-+-----------------+------------------+
-|                2|239.46739617902952|
-|                1|131.63665551839466|
-|                0|117.50335570469798|
-|             NULL|              NULL|
-+-----------------+------------------+
+
+![alt text](<Sources/Room type_bcn.png>)
 
 
-#### 2.2 EDA for Madrid
+### 2.2 EDA for Madrid
 Conduct exploratory data analysis specifically for the Madrid dataset.
 
 Madrid offers apartments with an average price of 136 EUR/night. It is noticeable that most apartments receive reviews, which can subtly influence the price. Additionally, being a super-host increases the price by just 2%. Madrid has 26,868 apartments, with 26,215 short-term rentals distributed across more than 20 neighborhoods, each with different average prices depending on their location and status.
 
-+----------------------------+------------------+
-|neighbourhood_group_cleansed|        avg(price)|
-+----------------------------+------------------+
-|                   Salamanca|177.08424697057126|
-|                      Centro|157.27426646573886|
-|                      Tetuán|145.66230529595015|
-|                   Hortaleza|142.91337099811676|
-|                  Arganzuela| 141.0462962962963|
-|                   Chamartín| 129.2258064516129|
-|                    Chamberí|127.67611111111111|
-|        San Blas - Canill...|125.88356164383562|
-|                      Retiro|122.25398512221041|
-|           Moncloa - Aravaca|  121.353507565337|
-|          Puente de Vallecas|111.86391251518833|
-|                     Barajas|100.93333333333334|
-|               Ciudad Lineal| 98.71675675675675|
-|        Fuencarral - El P...| 95.23543689320388|
-|                 Carabanchel| 82.37348178137651|
-|                       Usera| 73.94590163934426|
-|           Villa de Vallecas| 72.67164179104478|
-|                   Moratalaz| 71.96410256410256|
-|                  Villaverde| 71.86153846153846|
-|                      Latina| 69.77490297542045|
-+----------------------------+------------------+
+![alt text](Sources/Madrid_ng.png)
+
 
 The price also varies based on the type of accommodation, whether it is a full apartment, a private room, or a shared room.
-+-----------------+------------------+
-|room_type_encoded|        avg(price)|
-+-----------------+------------------+
-|                2|162.75906257215425|
-|                0|104.83464566929133|
-|                1|  89.2969022687609|
-+-----------------+------------------+
 
-#### 3. Analysis
+
+![alt text](<Sources/Room type_mad.png>)
+
+
+
+## 3. Analysis
 Compare the findings from the EDA of Barcelona and Madrid to identify similarities, differences, and potential recommendations for rental users and policy suggestions.
 
-![alt text](Sources/Dashboard1.png)
+![alt text](<Sources/Summary Dashboard1.png>)
 
 
-# 3.1.Airbnb Price Analysis: Barcelona vs. Madrid
+### 3.1.Airbnb Price Analysis: Barcelona vs. Madrid
 
 As mentioned at the beginning, the purpose of this project is to analyze and compare Airbnb prices in the cities of Barcelona and Madrid for short-term rentals.
 
-### ANALYSIS
+##### ANALYSIS
 
 Overall, Barcelona has a total of 18,857 listings, while Madrid has 26,868. Focusing only on short-term rentals, Barcelona has 14,848 listings with an average price of €219.05 per night, while Madrid offers 26,215 listings with a median price of €136.24 per night. This difference is also noticeable when analyzing the features offered for that price :
 
@@ -148,24 +106,39 @@ The price is close to the mean and decreases as it gets farther from the hotspot
   - Carabanchel, known as an artists' neighborhood and ranked as the third-best neighborhood in the world by Time Out magazine.
   - El Retiro and Salamanca neighborhoods, both considered high-end areas.
 
-**Bedroom type**
+**Bedroom type:**
+
 ![alt text](<Sources/Type of bedrooms.png>)
 
 As the graphic reflects in general both cities offers more entire aparment, followed by private rooms ending with share rooms. Nevertheless Madrid has more offer comparing wiht Barcelona.
 
-### CONCLUSIONS
+**Category Status:**
 
-Madrid receives fewer tourists than Barcelona but offers a larger number of accommodations. For instance, based on 2024 data, Madrid receives 30% fewer tourists but offers 42% more listings. If we just select the short-term accomodation the gap increase until 44% this can be atribuete to the regulation that each city apply with rentals.
+![alt text](<Sources/Category price.png>)
 
-Proximity to key points of interest, such as Plaça Catalunya in Barcelona and Puerta del Sol in Madrid, are key factors in determining accommodation prices. However, the analysis also shows that other factors, such as neighborhood ratings, tranquility, and prestige, influence prices.We can see that Salamanca's neighboudhood has high-prices despite being far from the city center.
+The chart illustrates that the accommodation options are evenly distributed across different budget categories: luxury, economic, and low-cost. Each category comprises approximately 30% of the total offerings, indicating a balanced distribution of accommodations catering to various budget levels.
 
-Therefore, it is recommended to conduct a future study considering more variables, such as the type of stores in the area and population density, to anticipate fluctuations in short-term rental prices. This would allow for better recommendations for tourists looking to enjoy a stay in both cities.
-However, what can be concluded is that Madrid emerges as a more economical option compared to Barcelona and offers more acomodations options.
+**Line Chart:**
+
+![alt text](<Sources/Line chart.png>)
+
+The line chart depicts the price behavior in Barcelona and Madrid relative to their distance from key hotspots. The general trend shows a positive correlation: as accommodations get closer to the hotspot, the price tends to increase. However, there are occasional price spikes influenced by specific neighborhoods. These anomalies suggest that neighborhood characteristics also play a significant role in pricing.
+
+#### **Conclusions:**
+
+- **Tourism and Accommodation:** Madrid receives fewer tourists than Barcelona but offers a greater number of accommodations. Based on 2024 data, Madrid attracts 30% fewer tourists but has 42% more listings. When focusing solely on short-term rentals, this difference grows to 44%, likely due to varying rental regulations between the cities.
+
+- **Proximity to Key Points:** Proximity to major attractions, such as Plaça Catalunya in Barcelona and Puerta del Sol in Madrid, is a crucial factor in determining accommodation prices. Despite this, other factors like neighborhood ratings, tranquility, and prestige also significantly impact prices. For example, Salamanca in Madrid and Gracia in Barcelona show high prices despite being farther from the city center.
+
+- **Future Study Recommendations:** To better anticipate fluctuations in short-term rental prices, future studies should incorporate additional variables, such as local store types and population density. This would enhance recommendations for tourists seeking accommodation in both cities.
+
+- **Overall Observations:** Madrid appears to be a more economical choice compared to Barcelona, offering more accommodation options. Both cities, however, provide a range of options to cater to different budget levels.
 
 
-# 3.2.Airbnb Price Prediction for Barcelona and Madrid
 
-## Analysis Overview
+## 3.2.Airbnb Price Prediction for Barcelona and Madrid
+
+**Analysis Overview**
 
 Given the growing demand for short-term rentals, there's a need to analyze and predict rental prices. This project offers a comprehensive analysis that helps set expectations for visitors.
 
@@ -260,4 +233,13 @@ The selected independent variables (X) are not well-adjusted to predict the depe
 These results provide valuable insights into the factors influencing Airbnb pricing in Barcelona and Madrid, highlighting both similarities and differences between the two markets.
 
 
-4.GENERAL CONCLUSIONS
+## GENERAL CONCLUSIONS
+- reviews doesn't affect to the price 
+- hotspot is not the reason to higher price
+- the valuable selected - `distance_from_city_center`
+- `host_is_superhost`
+- `elevator`
+- `air_conditioning`
+- `room_type_encoded`
+- `number_of_reviews`
+- `review_scores_rating` has not weight to price prediction. Should be more variables into account such seasonality demand, prestigy, trend etc. We recomend to take another analysis in the future to try to determinate better the prediction of the price.
