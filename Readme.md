@@ -53,7 +53,7 @@ Conduct exploratory data analysis specifically for the Madrid dataset.
 
 Madrid offers apartments with an average price of 136 EUR/night. It is noticeable that most apartments receive reviews, which can subtly influence the price. Additionally, being a super-host increases the price by just 2%. Madrid has 26,868 apartments, with 26,215 short-term rentals distributed across more than 20 neighborhoods, each with different average prices depending on their location and status.
 
-![alt text](Sources/Madrid_ng.png)
+![alt text](Sources/Main Dashboard.png)
 
 
 The price also varies based on the type of accommodation, whether it is a full apartment, a private room, or a shared room.
