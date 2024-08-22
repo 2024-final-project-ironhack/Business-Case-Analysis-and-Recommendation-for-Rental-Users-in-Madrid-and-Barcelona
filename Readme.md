@@ -41,6 +41,8 @@ Once is the dataset cleaned is crucial explore the data to understand data struc
 Conduct exploratory data analysis specifically for the Barcelona dataset where has been found this outputs.
 
 Barcelona offers apartments with an average price of 195 EUR/night. It is noticeable that most apartments receive reviews, which can directly influence the price. Additionally, being a super-host can increase the price by 10%. Barcelona has 18,85 , with 14,848 short-term rentals distributed across 10 neighborhoods, each with different average prices depending on their location and status.
+
+
 ----------------------------+-------------------------+
 |neighbourhood_group_cleansed|avg(review_scores_rating)|
 +----------------------------+-------------------------+
@@ -58,6 +60,8 @@ Barcelona offers apartments with an average price of 195 EUR/night. It is notice
 
 The price also varies based on the type of accommodation, whether it is a full apartment, a private room, or a shared room.
 
+
+
 +-----------------+------------------+
 |room_type_encoded|        avg(price)|
 +-----------------+------------------+
@@ -72,6 +76,8 @@ The price also varies based on the type of accommodation, whether it is a full a
 Conduct exploratory data analysis specifically for the Madrid dataset.
 
 Madrid offers apartments with an average price of 136 EUR/night. It is noticeable that most apartments receive reviews, which can subtly influence the price. Additionally, being a super-host increases the price by just 2%. Madrid has 26,868 apartments, with 26,215 short-term rentals distributed across more than 20 neighborhoods, each with different average prices depending on their location and status.
+
+
 
 +----------------------------+------------------+
 |neighbourhood_group_cleansed|        avg(price)|
@@ -99,6 +105,8 @@ Madrid offers apartments with an average price of 136 EUR/night. It is noticeabl
 +----------------------------+------------------+
 
 The price also varies based on the type of accommodation, whether it is a full apartment, a private room, or a shared room.
+
+
 +-----------------+------------------+
 |room_type_encoded|        avg(price)|
 +-----------------+------------------+
@@ -106,6 +114,8 @@ The price also varies based on the type of accommodation, whether it is a full a
 |                0|104.83464566929133|
 |                1|  89.2969022687609|
 +-----------------+------------------+
+
+
 
 #### 3. Analysis
 Compare the findings from the EDA of Barcelona and Madrid to identify similarities, differences, and potential recommendations for rental users and policy suggestions.
