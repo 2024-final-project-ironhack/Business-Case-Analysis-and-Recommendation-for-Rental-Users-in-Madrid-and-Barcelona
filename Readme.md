@@ -13,7 +13,7 @@ The purpose of this investigation is to provide insights and recommendations for
 # Steps
 
 ## 0. Data Preparation
-The initial dataset extracted from airbnb oficial website contains numerous columns that are not necessary for our analysis. To streamline and focus the exploratory and comparative analysis between the datasets of Barcelona and Madrid, it is crucial to simplify the datasets by removing irrelevant columns. This process will help concentrate on variables that add real value to the analysis and improve its efficiency. 
+The initial dataset extracted from the website **Inside Airbnb** contains numerous columns that are not necessary for our analysis. To streamline and focus the exploratory and comparative analysis between the datasets of Barcelona and Madrid, it is crucial to simplify the datasets by removing irrelevant columns. This process will help concentrate on variables that add real value to the analysis and improve its efficiency. 
 
 Thus, we have primarily retained 22 of the original 75 columns based on their importance for our analysis, which fit into these three categories: *'Host data'*, *'Numerical characteristics'*, and *'Descriptive characteristics'*. The original datasets are as below:
 
