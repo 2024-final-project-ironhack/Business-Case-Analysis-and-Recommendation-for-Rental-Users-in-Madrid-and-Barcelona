@@ -8,29 +8,29 @@ This influx of tourists has led to growing discontent among residents in both ci
 
 
 **Purpose of the Analysis:**
-The purpose of this investigation is to provide insights and recommendations for managing rental markets and tourism in Barcelona and Madrid. Specifically, it aims to propose strategies for decentralizing tourism in Barcelona, shifting the focus away from overcrowded hotspots, and to compare the rental dynamics between Barcelona and Madrid to inform better policy decisions, taking into account that tourists stay for an average of 4.6 nights in short-term accommodations.
+The purpose of this investigation is to provide insights and recommendations for managing rental markets and tourism in Barcelona and Madrid. Specifically, it aims to propose strategies for decentralising tourism in Barcelona, shifting the focus away from overcrowded hotspots, and to compare the rental dynamics between Barcelona and Madrid to inform better policy decisions, taking into account that tourists stay for an average of 4.6 nights in short-term accommodations.
 
 # Steps
 
 ## 0. Data Preparation
 The initial dataset extracted from airbnb oficial website contains numerous columns that are not necessary for our analysis. To streamline and focus the exploratory and comparative analysis between the datasets of Barcelona and Madrid, it is crucial to simplify the datasets by removing irrelevant columns. This process will help concentrate on variables that add real value to the analysis and improve its efficiency. 
 
-Thus, we have primarily retained 22 columns based on their importance for our analysis, which fit into these three categories: *'Host data'*, *'Numerical characteristics'*, and *'Descriptive characteristics'*. The original dataset are as below:
+Thus, we have primarily retained 22 of the original 75 columns based on their importance for our analysis, which fit into these three categories: *'Host data'*, *'Numerical characteristics'*, and *'Descriptive characteristics'*. The original datasets are as below:
 
 -  Datasets/datasets_originales/listings-detailed-bcn-original.csv
 -  Datasets/datasets_originales/listings-detailed-mad-original.csv
 
 ## 1. Data Cleaning
-Despite the first preparation dataset, a cleaning process in 'listings-detailed-bcn-original' & 'listings-detailed-mad-original' must be taken before analysing and modeling. It's essential to ensure our dataset is clean - with all meaning values; ready - without null values; and normalized - with categorical data encoded for future analysis. 
+After preparing our new datasets with the necessary columns, a cleaning process must be taken before further analysing and modeling the data. It's essential to ensure our dataset is clean, without null values; and normalised - with categorical data encoded for future analysis. 
 
-We used PySpark to inspect and analyze the null values in the datasets, here is a snapshot of the code in case of Barcelona:
+We used PySpark to inspect and analyse the null values in the datasets. Here is a snapshot of the code used for the Barcelona dataset:
 
 ```python
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, sum as _sum
 import pandas as pd
 
-# Initialize a Spark session
+# Initialise a Spark session
 spark = SparkSession.builder.appName("AirbnbPriceFilling").getOrCreate()
 
 # Load dataset into Spark DataFrames
@@ -40,7 +40,7 @@ df_bcn = spark.read.csv('datasets/listings_prepared_bcn.csv', header=True, infer
 df_bcn.select([_sum(col(c).isNull().cast("int")).alias(c) for c in df_bcn.columns]).show()
 
 ```
-After analysing both the null values in Barcelona and Madrid, we have found some patterns thus decided to use the following methodology to further conduct the data cleaning:
+After analysing the null values for both Barcelona and Madrid we detected some patterns and decided to use the following methodology to further conduct the data cleaning:
 
 ### 1.1 Encoding Categorical Data
 Convert categorical variables such as `room_types`, `kitchen`, `patio or balcony`, `elevator`, `air conditioning`, `long_term`, `short_term` and `possible_long_term` into numerical values(0, 1 or 2) using conditional encoding, the encoding scheme was as follows:
@@ -50,31 +50,31 @@ Convert categorical variables such as `room_types`, `kitchen`, `patio or balcony
     - Private room or Hotel room were encoded as 1;
     - Entire home/apt was encoded as 2.
 
-- For the amenities and duration(short-term, long-term, or both) provided by the host:
+- For the amenities and duration (short-term, long-term, or both) provided by the host:
 
     - If the host offers a particular amenity or duration, it is encoded as 1;
     - If the host does not offer the amenity, it is encoded as 0.
 
-### 1.2 Normalizing Data for 'price' column and filling in null values
-Standarlize feature "price" to have a mean of zero and a standard deviation of one to ensure that our predictive model will be accurate and efficient.
+### 1.2 Normalising Data for 'price' column and filling in null values
+Standardise 'price' to have a mean of zero and a standard deviation of one to ensure that our predictive model will be accurate and efficient.
 
 ```python
 from sklearn.preprocessing import StandardScaler
 
 scaler = StandardScaler()
-df_bcn['price_normalized'] = scaler.fit_transform(df_bcn[['price'])
+df_bcn['price_normalised'] = scaler.fit_transform(df_bcn[['price'])
 ```
-After normalizing the price, the new column 'price_normalized' is comparable to other normalized features and ensures that the model gives equal weight to all features during training.
+After normalising the price, the new column 'price_normalised' is comparable to other normalised features and ensures that the model gives equal weight to all features during training.
 
 Since the 'price' feature is crucial for our analysis, we adopted a two-step approach to handle the missing values more precisely:
 
-- Remove Rows for Long-Term Rentals: By identifing the data where 'long_term' is encoded as '1', we dropped those rows in listing as they are not our primary focus for short-term and vacation rentals analysis. 
-- Fill Remaining Null Values: We filled the remained null values with the average price of listings in the same neighborhood. This method leverages the local market data to estimate missing prices, ensuring that the filled values are representative of the surrounding area.
+- Remove Rows for Long-Term Rentals: By identifing the data where 'long_term' is encoded as '1', we dropped those as they are not our primary focus for short-term and vacation rentals analysis. 
+- Fill Remaining Null Values: We filled the remaining null values with the average price of listings in the same neighborhood. This method leverages the local market data to estimated missing prices, ensuring that the filled values are representative of the surrounding area.
 
-### 1.3 Calculating Distance from city center and categorizing
-Calculate the distance of each listing from the city centers using the Haversine formula. In our analysis, we have used the geograohic data of Plaza Catalunya(41.3874, 2.1686) as the city center spot and Plaza de Sol() for Madrid. 
+### 1.3 Calculating Distance from city center and categorising
+Calculate the distance of each listing from the city centers using the Haversine formula. In our analysis, we have used the geograohic data of Plaza Catalunya (41.3874, 2.1686) as the city center spot and Plaza de Sol (40.4255, 3.7262) for Madrid. 
 
-Here is a snapshot of the code of the code for Barcelona using Haversine formula:
+Here is a snapshot of the code of the code for Barcelona using the Haversine formula:
 
 ```python
 from math import radians, cos, sin, asin, sqrt
@@ -98,7 +98,7 @@ df_bcn['distance_from_city_center'] = df_bcn.apply(
     lambda row: haversine(row['longitude'], row['latitude'], city_center_bcn[1], city_center_bcn[0]), axis=1
 )
 ```
-In order to use the raw data for further analysism, we have categorized the values into bins and added a new column "distance_category", this would help us in large scale of analysis when predicting the price. Here is an example of the results after assigning categorize distances using pd.cut:
+In order to use the raw data for further analysis, we have categorised the values into bins and added a new column "distance_category" which will help us in large-scale analysis and price prediction. Here is an example of the results after assigning categorised distances using pd.cut:
 
 ![alt text](Sources/distance_exaple.png)
 
@@ -108,7 +108,7 @@ Once the dataset has been cleaned, it is crucial to explore the data to understa
 ### 2.1 EDA for Barcelona
 Conduct exploratory data analysis specifically for the Barcelona dataset.
 
-Barcelona offers apartments with an average price of 195 EUR/night. It is noticeable that most apartments receive reviews, which can directly influence the price. Additionally, being a super-host can increase the price by 10%. Barcelona has 18,85 , with 14,848 short-term rentals distributed across 10 neighborhoods, each with different average prices depending on their location and status.
+Barcelona offers apartments with an average price of 195 EUR/night. It is noticeable that most apartments receive reviews, which can directly influence the price. Additionally, being a super-host can increase the price by 10%. Barcelona has 18,85 listings, with 14,848 short-term rentals distributed across 10 neighborhoods, each with different average prices depending on their location and status.
 
 ![alt text](<Sources/Barcelona_ ng.png>)
 
@@ -135,7 +135,15 @@ The price also varies based on the type of accommodation, whether it is a full a
 ## 3. Data Analysis
 Compare the findings from the EDA of Barcelona and Madrid to identify similarities, differences, and potential recommendations for rental users and policy suggestions.
 
+We used Tableau to visualise the data and further our analysis. We created graphics to explore various ideas such as the average listing price in relation to distance from the centre, as well as graphics which focused on the client's experience, such as ranking the top-rated hosts and listings in each city.
+
+We created a main dashboard containing the principal information such as the average price per night, the number of listings, and maps illustrating availability in the different distance categories.
+
 ![Main Dashboard](https://github.com/user-attachments/assets/76b783f7-3d14-46af-9403-e7aec7f92455)
+
+In addition to the above, we created interactive maps for both cities, using multiple filters such as price and price category, neighbourhood, distance from the centre, review score and more. Additional filters for amenities and other factors can be added or removed as required. This was designed to be user-friendly and help the client to make an informed decision about their stay.
+
+![Distance Category Map Barcelona Dashboard](https://github.com/user-attachments/assets/bfa923bd-226b-4c3e-88f8-d2819d7e9b15)
 
 
 ### 3.1.Airbnb Price Analysis: Barcelona vs. Madrid
@@ -144,7 +152,7 @@ As mentioned at the beginning, the purpose of this project is to analyse and com
 
 #### Overall View
 
-Barcelona has a total of 18,857 listings, while Madrid has 26,868. Focusing only on short-term rentals, Barcelona has 14,848 listings with an average price of €219.05 per night, while Madrid offers 26,215 listings with a median price of €136.24 per night. This difference is also noticeable when analyzing the features offered for that price :
+Barcelona has a total of 18,857 listings, while Madrid has 26,868. Focusing only on short-term rentals, Barcelona has 14,848 listings with an average price of €219.05 per night, while Madrid offers 26,215 listings with a median price of €136.24 per night. This difference is also noticeable when analysing the features offered for that price :
 
 **3.1.1 Room Type and Price Relationship:**
 
@@ -203,7 +211,7 @@ The line chart depicts the price behavior in Barcelona and Madrid relative to th
 
 - **Tourism and Accommodation:** Madrid receives fewer tourists than Barcelona but offers a greater number of accommodations. Based on year 2024's data, Madrid attracts 30% fewer tourists but has 42% more listings. When focusing solely on short-term rentals, this difference grows to 44%, likely due to varying rental regulations between the cities.
 
-- **Proximity to Key Points:** Proximity to major attractions, such as Plaza Catalunya in Barcelona and Puerta del Sol in Madrid, is a crucial factor in determining accommodation prices. Despite this, other factors like neighborhood ratings, tranquility, and prestige also significantly impact prices. For example, `Salamanca` in Madrid and `Gracia` in Barcelona show high prices despite being farther from the city center.
+- **Proximity to Key Points:** Proximity to major attractions, such as Plaza Catalunya in Barcelona and Puerta del Sol in Madrid, is a crucial factor in determining accommodation prices. Despite this, other factors like neighborhood ratings, tranquility, and prestige also significantly impact prices. For example, Salamanca in Madrid and Gracia in Barcelona show high prices despite being farther from the city center.
 
 - **Future Study Recommendations:** To better anticipate fluctuations in short-term rental prices, future studies should incorporate additional variables, such as local store types and population density. This would enhance recommendations for tourists seeking accommodation in both cities.
 
@@ -215,7 +223,7 @@ The line chart depicts the price behavior in Barcelona and Madrid relative to th
 
 **Analysis Overview**
 
-Given the growing demand for short-term rentals, there's a need to analyze and predict rental prices. This project offers a comprehensive analysis that helps set expectations for visitors.
+Given the growing demand for short-term rentals, there's a need to analyse and predict rental prices. This project offers a comprehensive analysis that helps set expectations for visitors.
 
 ### Regression Models
 
@@ -299,7 +307,7 @@ The selected independent variables (X) are not well-adjusted to predict the depe
 
 ### Key Observations:
 
-- **Distance from City Center:** Negatively impacts price in both cities, emphasizing the premium on central locations.
+- **Distance from City Center:** Negatively impacts price in both cities, emphasising the premium on central locations.
 - **Superhost Status:** Minimal impact on price, slightly positive in Madrid, negligible in Barcelona.
 - **Kitchens:** Interestingly associated with lower prices, suggesting different market segments for properties without kitchens.
 - **Bedrooms:** Strongly correlated with higher prices, particularly in Madrid.
@@ -325,13 +333,13 @@ These results provide valuable insights into the factors influencing Airbnb pric
 **Advice for Airbnb Users:**
 
 1. **Budget Adjustment:** 
-   - **Madrid:** If your budget is around 150 euros per night, consider increasing it by just 10 euros to significantly expand your range of available apartments.
+   - **Madrid:** If your budget is around 150 euros per night, consider increasing it by just 10 euros to significantly expand the range of available apartments.
    - **Barcelona:**
      - For "economic" travelers, raising your budget from 180 to 190 euros can provide more options.
      - For "luxury" travelers, increasing your budget from 230 to 240 euros can give you access to a wider selection of accommodations.
 
 2. **Consider Bed Type and Bedrooms:** Since the number of bedrooms and the type of bed have a strong impact on price, carefully consider these factors when selecting an Airbnb.
 
-3. **Broader Selection in Madrid:** For those prioritizing budget, Madrid offers a greater variety of "economic" and "low-cost" accommodations compared to Barcelona. This makes Madrid a more attractive option for budget-conscious travelers.
+3. **Broader Selection in Madrid:** For those prioritising budget, Madrid offers a greater variety of "economic" and "low-cost" accommodations compared to Barcelona. This makes Madrid a more attractive option for budget-conscious travelers.
 
 By keeping these insights in mind, an user can make more informed decisions and find the best accommodations that fit their preferences and budget in both Barcelona and Madrid.
