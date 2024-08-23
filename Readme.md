@@ -43,13 +43,61 @@ df_bcn.select([_sum(col(c).isNull().cast("int")).alias(c) for c in df_bcn.column
 After analysing both the null values in Barcelona and Madrid, we have found some patterns thus decided to use the following methodology to further conduct the data cleaning:
 
 ### 1.1 Encoding Categorical Data
-Convert categorical variables such as `...`, `...`, and `...` into numerical values using techniques like one-hot encoding or label encoding.
+Convert categorical variables such as `room_types`, `kitchen`, `patio or balcony`, `elevator`, `air conditioning`, `long_term`, `short_term` and `possible_long_term` into numerical values(0, 1 or 2) using conditional encoding, the encoding scheme was as follows:
 
-### 1.2 Normalising Data
-Standardise features such as price and distance from the city centre to have a mean of zero and a standard deviation of one. This is especially important for calculations involving distance and price.
+For "room_types":
+- Shared room or null values were encoded as 0
+- Private room or Hotel room were encoded as 1
+- Entire home/apt was encoded as 2
+
+For the amenities and duration(short-term, long-term, or both) provided by the host
+
+- If the host offers a particular amenity or duration, it is encoded as 1
+- If the host does not offer the amenity, it is encoded as 0
+
+### 1.2 Normalising Data for price column and filling in null values
+Standardise feature "price" to have a mean of zero and a standard deviation of one.
+
+```python
+
+```
+
 
 ### 1.3 Calculating Distance
-Calculate the distance of each listing from the city centers using the Haversine formula. This can be done in Python. 
+Calculate the distance of each listing from the city centers using the Haversine formula. In our analysis, we have used the geograohic data of Plaza Catalunya(41.3874, 2.1686) as the city center spot and Plaza de Sol() for Madrid. 
+
+Here is a snapshot of the code of the code for Barcelona using Haversine formula:
+
+```python
+from math import radians, cos, sin, asin, sqrt
+
+def haversine(lon1, lat1, lon2, lat2):
+    # Convert decimal degrees to radians
+    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * asin(sqrt(a))
+    r = 6371  # Radius of Earth in kilometers
+    return c * r
+
+# Coordinates of Plaza Catalunya, Barcelona
+city_center_bcn = (41.3874, 2.1686)
+
+# Apply the Haversine function
+df_bcn['distance_from_city_center'] = df_bcn.apply(
+    lambda row: haversine(row['longitude'], row['latitude'], city_center_bcn[1], city_center_bcn[0]), axis=1
+)
+```
+In order to use the raw data for further analysism, we have categorized the values into bins and added a new column "distance_category", this would help us in large scale of analysis when predicting the price. Here is an example of the results after assigning categorize distances using pd.cut:
+
+         distance_from_city_center   distance_category
+0                   1.720122            1-2 km
+1                   0.992259             <1 km
+2                   2.046952            2-3 km
+3                   0.984913             <1 km
+4                   5.094048            5-8 km
 
 ## 2. Exploratory Data Analysis (EDA)
 Once the dataset has been cleaned, it is crucial to explore the data to understand data structure, uncover patterns and trends, and prepare data for modeling. It helps identify relationships, detect anomalies, and guide decisions through visualisations and statistical insights. EDA supports informed, data-driven decision-making.
