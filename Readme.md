@@ -160,9 +160,19 @@ Barcelona has a total of 18,857 listings, while Madrid has 26,868. Focusing only
 
 Although the platform covers accommodations in all neighborhoods of both cities, in Barcelona, the majority are concentrated in the `Eixample` and `Ciutat Vella` neighborhoods, with 5,594 and 2,998 listings, respectively. In contrast, in Madrid, most of the listings (11,039) are located in the `center`.
 
+
+- **Price chart per Room_type:**
+
+![alt text](<Sources/Type of bedrooms.png>)
+
+As the graphic reflects, in general there is a greater percentage of whole apartments offered in both cities, followed by private rooms and lastly shared rooms. Nevertheless Madrid has many more listings than Barcelona.
+
 **3.1.2 Price Difference:**
 
 The price is close to the mean and decreases as it gets further from the hotspot. However, the average price behaviour varies significantly between high-end neighborhoods.
+
+![alt text](Sources/Avg price diatance mad.png)
+![alt text](Sources/avg price distance bcn.png)
 
  **Barcelona:**
   - `Sant Gervasi` is a high-end neighborhood, while `L'Eixample` has high demand due to its central location.
@@ -171,23 +181,13 @@ The price is close to the mean and decreases as it gets further from the hotspot
   - `Carabanchel`, known as an artists' neighborhood and ranked as the third-best neighborhood in the world by Time Out magazine.
   - El `Retiro` and `Salamanca` neighborhoods, both considered high-end areas.
 
-Line charts & Bar charts
-
-- **Price chart per Room_type:**
-
-![alt text](<Sources/Type of bedrooms.png>)
-
-As the graphic reflects, in general there is a greater percentage of whole apartments offered in both cities, followed by private rooms and lastly shared rooms. Nevertheless Madrid has many more listings than Barcelona.
-
-
-
-- **Price chart per Price_category:**
+- **3.1.3 Distribution per Price_category:**
 
 ![alt text](<Sources/Category price.png>)
 
 The chart illustrates that the accommodation options are evenly distributed across different budget categories: luxury, economic, and low-cost. Each category comprises approximately 30% of the total offerings, indicating a balanced distribution of accommodations catering to various budget levels.
 
-- **Line chart comparing two cities regarding price and distance from the city center:**
+- **3.1.4 Line chart comparing two cities regarding price and distance from the city center:**
 
 ![alt text](<Sources/Line chart.png>)
 
