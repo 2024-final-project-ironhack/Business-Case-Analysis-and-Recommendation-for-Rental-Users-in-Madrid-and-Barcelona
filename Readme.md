@@ -164,22 +164,20 @@ Although the platform covers accommodations in all neighborhoods of both cities,
 
 The price is close to the mean and decreases as it gets further from the hotspot. However, the average price behaviour varies significantly between high-end neighborhoods.
 
-**Price Charts:**
-
 - **Barcelona:**
-  - Sant Gervasi is a high-end neighborhood, while L'Eixample has high demand due to its central location.
+  - `Sant Gervasi` is a high-end neighborhood, while `L'Eixample` has high demand due to its central location.
 
 - **Madrid:**
-  - Carabanchel, known as an artists' neighborhood and ranked as the third-best neighborhood in the world by Time Out magazine.
-  - El Retiro and Salamanca neighborhoods, both considered high-end areas.
+  - `Carabanchel`, known as an artists' neighborhood and ranked as the third-best neighborhood in the world by Time Out magazine.
+  - El `Retiro` and `Salamanca` neighborhoods, both considered high-end areas.
 
-**Per Room type:**
+**Price chart per Room_type:**
 
 ![alt text](<Sources/Type of bedrooms.png>)
 
 As the graphic reflects, in general there is a greater percentage of whole apartments offered in both cities, followed by private rooms and lastly shared rooms. Nevertheless Madrid has many more listings than Barcelona.
 
-**Per Price Category:**
+**Price chart per Price_category:**
 
 ![alt text](<Sources/Category price.png>)
 
