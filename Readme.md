@@ -45,25 +45,33 @@ After analysing both the null values in Barcelona and Madrid, we have found some
 ### 1.1 Encoding Categorical Data
 Convert categorical variables such as `room_types`, `kitchen`, `patio or balcony`, `elevator`, `air conditioning`, `long_term`, `short_term` and `possible_long_term` into numerical values(0, 1 or 2) using conditional encoding, the encoding scheme was as follows:
 
-For "room_types":
-- Shared room or null values were encoded as 0
-- Private room or Hotel room were encoded as 1
-- Entire home/apt was encoded as 2
+  For "room_types":
+    - Shared room or null values were encoded as 0
+    - Private room or Hotel room were encoded as 1
+    - Entire home/apt was encoded as 2
 
-For the amenities and duration(short-term, long-term, or both) provided by the host
+  For the amenities and duration(short-term, long-term, or both) provided by the host:
 
-- If the host offers a particular amenity or duration, it is encoded as 1
-- If the host does not offer the amenity, it is encoded as 0
+    - If the host offers a particular amenity or duration, it is encoded as 1
+    - If the host does not offer the amenity, it is encoded as 0
 
-### 1.2 Normalising Data for price column and filling in null values
-Standardise feature "price" to have a mean of zero and a standard deviation of one.
+### 1.2 Normalizing Data for 'price' column and filling in null values
+Standarlize feature "price" to have a mean of zero and a standard deviation of one to ensure that our predictive model will be accurate and efficient.
 
 ```python
+from sklearn.preprocessing import StandardScaler
 
+scaler = StandardScaler()
+df_bcn['price_normalized'] = scaler.fit_transform(df_bcn[['price'])
 ```
+After normalizing the price, the new column 'price_normalized' is comparable to other normalized features and ensures that the model gives equal weight to all features during training.
 
+Since the 'price' feature is crucial for our analysis, we adopted a two-step approach to handle the missing values more precisely:
 
-### 1.3 Calculating Distance
+    - Remove Rows for Long-Term Rentals: By identifing the data where 'long_term' is encoded as '1', we dropped those rows in listing as they are not our primary focus for short-term and vacation rentals analysis. 
+    - Fill Remaining Null Values: We filled the remained null values with the average price of listings in the same neighborhood. This method leverages the local market data to estimate missing prices, ensuring that the filled values are representative of the surrounding area.
+
+### 1.3 Calculating Distance from city center and categorizing
 Calculate the distance of each listing from the city centers using the Haversine formula. In our analysis, we have used the geograohic data of Plaza Catalunya(41.3874, 2.1686) as the city center spot and Plaza de Sol() for Madrid. 
 
 Here is a snapshot of the code of the code for Barcelona using Haversine formula:
@@ -92,12 +100,7 @@ df_bcn['distance_from_city_center'] = df_bcn.apply(
 ```
 In order to use the raw data for further analysism, we have categorized the values into bins and added a new column "distance_category", this would help us in large scale of analysis when predicting the price. Here is an example of the results after assigning categorize distances using pd.cut:
 
-         distance_from_city_center   distance_category
-0                   1.720122            1-2 km
-1                   0.992259             <1 km
-2                   2.046952            2-3 km
-3                   0.984913             <1 km
-4                   5.094048            5-8 km
+![alt text](image.png)
 
 ## 2. Exploratory Data Analysis (EDA)
 Once the dataset has been cleaned, it is crucial to explore the data to understand data structure, uncover patterns and trends, and prepare data for modeling. It helps identify relationships, detect anomalies, and guide decisions through visualisations and statistical insights. EDA supports informed, data-driven decision-making.
