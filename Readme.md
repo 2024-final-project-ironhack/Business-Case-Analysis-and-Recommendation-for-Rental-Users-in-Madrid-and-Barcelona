@@ -171,8 +171,8 @@ As the graphic reflects, in general there is a greater percentage of whole apart
 
 The price is close to the mean and decreases as it gets further from the hotspot. However, the average price behaviour varies significantly between high-end neighborhoods.
 
-![alt text](Sources/Avg price diatance mad.png)
-![alt text](Sources/avg price distance bcn.png)
+![alt text](<Avg price diatance mad.png>)
+![alt text](<Sources/avg price distance bcn.png>)
 
  **Barcelona:**
   - `Sant Gervasi` is a high-end neighborhood, while `L'Eixample` has high demand due to its central location.
