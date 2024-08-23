@@ -45,12 +45,12 @@ After analysing both the null values in Barcelona and Madrid, we have found some
 ### 1.1 Encoding Categorical Data
 Convert categorical variables such as `room_types`, `kitchen`, `patio or balcony`, `elevator`, `air conditioning`, `long_term`, `short_term` and `possible_long_term` into numerical values(0, 1 or 2) using conditional encoding, the encoding scheme was as follows:
 
-For "room_types":
+- For "room_types":
     - Shared room or null values were encoded as 0;
     - Private room or Hotel room were encoded as 1;
     - Entire home/apt was encoded as 2.
 
-For the amenities and duration(short-term, long-term, or both) provided by the host:
+- For the amenities and duration(short-term, long-term, or both) provided by the host:
 
     - If the host offers a particular amenity or duration, it is encoded as 1;
     - If the host does not offer the amenity, it is encoded as 0.
