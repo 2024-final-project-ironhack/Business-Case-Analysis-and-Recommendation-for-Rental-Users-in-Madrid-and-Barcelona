@@ -13,15 +13,34 @@ The purpose of this investigation is to provide insights and recommendations for
 # Steps
 
 ## 0. Data Preparation
-The initial dataset extracted from airbnb oficial website contains numerous columns that are not necessary for our analysis. To streamline and focus the exploratory and comparative analysis between the datasets of Barcelona and Madrid, it is crucial to simplify the datasets by removing irrelevant columns. This process will help concentrate on variables that add real value to the analysis and improve its efficiency. Below are the names of the reduced datasets created for this purpose:
+The initial dataset extracted from airbnb oficial website contains numerous columns that are not necessary for our analysis. To streamline and focus the exploratory and comparative analysis between the datasets of Barcelona and Madrid, it is crucial to simplify the datasets by removing irrelevant columns. This process will help concentrate on variables that add real value to the analysis and improve its efficiency. 
 
-- `listing_prepared_bcn`
-- `listing_prepared_mad`
+Thus, we have primarily retained 22 columns based on their importance for our analysis, which fit into these three categories: *'Host data'*, *'Numerical characteristics'*, and *'Descriptive characteristics'*. The original dataset are as below:
+
+-  Datasets/datasets_originales/listings-detailed-bcn-original.csv
+-  Datasets/datasets_originales/listings-detailed-mad-original.csv
 
 ## 1. Data Cleaning
-Despite the first preparation dataset, a cleaning process in listing_prepared_bcn & listing_prepared_mad must be taken before analysing and modeling. It's essential to ensure our dataset is clean and ready. It is necessary to encoded categorical data and normalised features such as latitude, longitude, price, and amenities (e.g., bedrooms, AC, bathroom, balcony, etc.).
+Despite the first preparation dataset, a cleaning process in 'listings-detailed-bcn-original' & 'listings-detailed-mad-original' must be taken before analysing and modeling. It's essential to ensure our dataset is clean - with all meaning values; ready - without null values; and normalized - with categorical data encoded for future analysis. 
 
-The different processes for cleaning data are described below:
+We used PySpark to inspect and analyze the null values in the datasets, here is a snapshot of the code in case of Barcelona:
+
+```python
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, sum as _sum
+import pandas as pd
+
+# Initialize a Spark session
+spark = SparkSession.builder.appName("AirbnbPriceFilling").getOrCreate()
+
+# Load dataset into Spark DataFrames
+df_bcn = spark.read.csv('datasets/listings_prepared_bcn.csv', header=True, inferSchema=True)
+
+# Count missing values for each column
+df_bcn.select([_sum(col(c).isNull().cast("int")).alias(c) for c in df_bcn.columns]).show()
+
+```
+After analysing both the null values in Barcelona and Madrid, we have found some patterns thus decided to use the following methodology to further conduct the data cleaning:
 
 ### 1.1 Encoding Categorical Data
 Convert categorical variables such as `...`, `...`, and `...` into numerical values using techniques like one-hot encoding or label encoding.
