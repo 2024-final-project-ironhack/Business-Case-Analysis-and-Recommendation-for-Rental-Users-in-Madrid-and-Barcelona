@@ -100,7 +100,7 @@ df_bcn['distance_from_city_center'] = df_bcn.apply(
 ```
 In order to use the raw data for further analysism, we have categorized the values into bins and added a new column "distance_category", this would help us in large scale of analysis when predicting the price. Here is an example of the results after assigning categorize distances using pd.cut:
 
-![alt text](image.png)
+![alt text](Sources/distance_exaple.png)
 
 ## 2. Exploratory Data Analysis (EDA)
 Once the dataset has been cleaned, it is crucial to explore the data to understand data structure, uncover patterns and trends, and prepare data for modeling. It helps identify relationships, detect anomalies, and guide decisions through visualisations and statistical insights. EDA supports informed, data-driven decision-making.
@@ -132,7 +132,7 @@ The price also varies based on the type of accommodation, whether it is a full a
 
 
 
-## 3. Analysis
+## 3. Data Analysis
 Compare the findings from the EDA of Barcelona and Madrid to identify similarities, differences, and potential recommendations for rental users and policy suggestions.
 
 ![Main Dashboard](https://github.com/user-attachments/assets/76b783f7-3d14-46af-9403-e7aec7f92455)
@@ -142,11 +142,11 @@ Compare the findings from the EDA of Barcelona and Madrid to identify similariti
 
 As mentioned at the beginning, the purpose of this project is to analyse and compare Airbnb prices in the cities of Barcelona and Madrid for short-term rentals.
 
-##### ANALYSIS
+#### Overall View
 
-Overall, Barcelona has a total of 18,857 listings, while Madrid has 26,868. Focusing only on short-term rentals, Barcelona has 14,848 listings with an average price of €219.05 per night, while Madrid offers 26,215 listings with a median price of €136.24 per night. This difference is also noticeable when analyzing the features offered for that price :
+Barcelona has a total of 18,857 listings, while Madrid has 26,868. Focusing only on short-term rentals, Barcelona has 14,848 listings with an average price of €219.05 per night, while Madrid offers 26,215 listings with a median price of €136.24 per night. This difference is also noticeable when analyzing the features offered for that price :
 
-**Room Type and Price Relationship:**
+**3.1.1 Room Type and Price Relationship:**
 
 - **Barcelona:**
   - Shared Room: €117.50/night (median).
@@ -158,11 +158,11 @@ Overall, Barcelona has a total of 18,857 listings, while Madrid has 26,868. Focu
   - Private Room or Hotel: €89.29/night (median).
   - Entire Apartment: €162.74/night (median).
 
-Although the platform covers accommodations in all neighborhoods of both cities, in Barcelona, the majority are concentrated in the Eixample and Ciutat Vella neighborhoods, with 5,594 and 2,998 listings, respectively. In contrast, in Madrid, most of the listings (11,039) are located in the city center.
+Although the platform covers accommodations in all neighborhoods of both cities, in Barcelona, the majority are concentrated in the `Eixample` and `Ciutat Vella` neighborhoods, with 5,594 and 2,998 listings, respectively. In contrast, in Madrid, most of the listings (11,039) are located in the `center`.
 
-**Price Difference:**
+**3.1.2 Price Difference:**
 
-The price is close to the mean and decreases as it gets farther from the hotspot. However, the average price behaviour varies significantly between high-end neighborhoods.
+The price is close to the mean and decreases as it gets further from the hotspot. However, the average price behaviour varies significantly between high-end neighborhoods.
 
 **Price Charts:**
 
@@ -173,19 +173,19 @@ The price is close to the mean and decreases as it gets farther from the hotspot
   - Carabanchel, known as an artists' neighborhood and ranked as the third-best neighborhood in the world by Time Out magazine.
   - El Retiro and Salamanca neighborhoods, both considered high-end areas.
 
-**Bedroom type:**
+**Per Room type:**
 
 ![alt text](<Sources/Type of bedrooms.png>)
 
 As the graphic reflects, in general there is a greater percentage of whole apartments offered in both cities, followed by private rooms and lastly shared rooms. Nevertheless Madrid has many more listings than Barcelona.
 
-**Category Status:**
+**Per Price Category:**
 
 ![alt text](<Sources/Category price.png>)
 
 The chart illustrates that the accommodation options are evenly distributed across different budget categories: luxury, economic, and low-cost. Each category comprises approximately 30% of the total offerings, indicating a balanced distribution of accommodations catering to various budget levels.
 
-**Line Chart:**
+**Line chart comparing two cities regarding price and distance from the city center:**
 
 ![alt text](<Sources/Line chart.png>)
 
