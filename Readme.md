@@ -146,7 +146,7 @@ In addition to the above, we created interactive maps for both cities, using mul
 ![Distance Category Map Barcelona Dashboard](https://github.com/user-attachments/assets/bfa923bd-226b-4c3e-88f8-d2819d7e9b15)
 
 
-### 3.1.Airbnb Price Analysis: Barcelona vs. Madrid
+### 3.1. Airbnb Price Analysis: Barcelona vs. Madrid
 
 As mentioned at the beginning, the purpose of this project is to analyse and compare Airbnb prices in the cities of Barcelona and Madrid for short-term rentals.
 
@@ -219,7 +219,7 @@ The line chart depicts the price behavior in Barcelona and Madrid relative to th
 
 
 
-## 3.2.Airbnb Price Prediction for Barcelona and Madrid
+## 3.2 Airbnb Price Prediction for Barcelona and Madrid
 
 **Analysis Overview**
 
