@@ -164,10 +164,10 @@ Although the platform covers accommodations in all neighborhoods of both cities,
 
 The price is close to the mean and decreases as it gets further from the hotspot. However, the average price behaviour varies significantly between high-end neighborhoods.
 
-**Barcelona:**
+ **Barcelona:**
   - `Sant Gervasi` is a high-end neighborhood, while `L'Eixample` has high demand due to its central location.
 
-**Madrid:**
+ **Madrid:**
   - `Carabanchel`, known as an artists' neighborhood and ranked as the third-best neighborhood in the world by Time Out magazine.
   - El `Retiro` and `Salamanca` neighborhoods, both considered high-end areas.
 
