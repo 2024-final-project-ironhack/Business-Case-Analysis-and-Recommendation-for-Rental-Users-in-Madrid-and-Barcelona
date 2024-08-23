@@ -164,26 +164,29 @@ Although the platform covers accommodations in all neighborhoods of both cities,
 
 The price is close to the mean and decreases as it gets further from the hotspot. However, the average price behaviour varies significantly between high-end neighborhoods.
 
-- **Barcelona:**
+**Barcelona:**
   - `Sant Gervasi` is a high-end neighborhood, while `L'Eixample` has high demand due to its central location.
 
-- **Madrid:**
+**Madrid:**
   - `Carabanchel`, known as an artists' neighborhood and ranked as the third-best neighborhood in the world by Time Out magazine.
   - El `Retiro` and `Salamanca` neighborhoods, both considered high-end areas.
 
-**Price chart per Room_type:**
+
+- **Price chart per Room_type:**
 
 ![alt text](<Sources/Type of bedrooms.png>)
 
 As the graphic reflects, in general there is a greater percentage of whole apartments offered in both cities, followed by private rooms and lastly shared rooms. Nevertheless Madrid has many more listings than Barcelona.
 
-**Price chart per Price_category:**
+
+
+- **Price chart per Price_category:**
 
 ![alt text](<Sources/Category price.png>)
 
 The chart illustrates that the accommodation options are evenly distributed across different budget categories: luxury, economic, and low-cost. Each category comprises approximately 30% of the total offerings, indicating a balanced distribution of accommodations catering to various budget levels.
 
-**Line chart comparing two cities regarding price and distance from the city center:**
+- **Line chart comparing two cities regarding price and distance from the city center:**
 
 ![alt text](<Sources/Line chart.png>)
 
