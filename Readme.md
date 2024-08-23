@@ -171,6 +171,7 @@ The price is close to the mean and decreases as it gets further from the hotspot
   - `Carabanchel`, known as an artists' neighborhood and ranked as the third-best neighborhood in the world by Time Out magazine.
   - El `Retiro` and `Salamanca` neighborhoods, both considered high-end areas.
 
+Line charts & Bar charts
 
 - **Price chart per Room_type:**
 
